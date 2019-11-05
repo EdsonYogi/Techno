@@ -1,0 +1,24 @@
+{
+  "id": "tablet",
+  "nome": "Tablet",
+  "preco": 2000,
+  "img": "./api/produtos/tablet/tablet.jpg",
+  "descricao": "Lorem ipsum cursus elementum varius sed adipiscing, curae est massa euismod quisque nec pretium, sollicitudin iaculis accumsan proin tincidunt. dolor molestie euismod nullam senectus eu gravida himenaeos ad hac, donec curabitur feugiat sem iaculis vehicula fermentum accumsan, sem cubilia condimentum ultricies ad imperdiet amet ut.",
+  "estoque": 10,
+  "avaliacoes": [{
+      "nome": "John",
+      "estrelas": 5,
+      "descricao": "Pulvinar senectus commodo aenean accumsan porttitor placerat, faucibus conubia vivamus nisl nunc, hendrerit adipiscing est vulputate litora."
+    },
+    {
+      "nome": "Junior",
+      "estrelas": 4.5,
+      "descricao": "Pulvinar senectus commodo aenean accumsan porttitor placerat, faucibus conubia vivamus nisl nunc, hendrerit adipiscing est vulputate litora."
+    },
+    {
+      "nome": "Karen",
+      "estrelas": 4,
+      "descricao": "Pulvinar senectus commodo aenean accumsan porttitor placerat, faucibus conubia vivamus nisl nunc, hendrerit adipiscing est vulputate litora."
+    }
+  ]
+}

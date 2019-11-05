@@ -1,0 +1,27 @@
+body {
+  background-image: linear-gradient(to right, rgb(26, 26, 26) 40%, rgba(0, 0, 0, 0.25) 40%);
+}
+
+.carrinho {
+  width: 35px;
+  height: 35px;
+  padding-left: 5px;
+}
+
+.carrinho::before {
+  display: block;
+
+}
+
+.carrinhoTotal,
+.produtos {
+  cursor: pointer;
+}
+
+.produtos-modal {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 20%);
+}
+
+.caixaAlerta {
+  z-index: 9999;
+}

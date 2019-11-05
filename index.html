@@ -4,12 +4,130 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="/js/vue.min.js"></script>
+  <link href="css/bootstrap.css" rel="stylesheet" >
+  <link href="css/style.css" rel="stylesheet" >
+  <script src="/js/vue/vue.min.js"></script>
   <title>Techno</title>
 </head>
 <body>
-
-<script src="/js/script.js"></script>
+  <div id="app">
+    <!--Menu de navegacao-->
+    <header>
+      <nav>
+        <div class="container">
+          <div class="row d-flex p-3">
+            <h1 class="h1 text-uppercase text-white m-0">Techno</h1>
+            <div class="carrinhoTotal row w-auto ml-auto pr-3" data-toggle="modal" data-target="#carrinhoTotalModal">
+              <p class="m-0">{{total | conversaoPreco}} | {{quantidade}}</p>
+              <img class="carrinho" src="./assets/shopping-cart-solid.svg" alt="Carrinho">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!--Modal do Carrinho de Compras-->
+    <section>
+      <div class="modal fade" id="carrinhoTotalModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Carrinho</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-0">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item p-0" v-for="(item, index) in carrinhoProdutos">
+                  <div class="row d-flex justify-content-between mx-3">
+                    <p class="col my-2">{{item.produto}}</p>
+                    <div class="row">
+                      <p class="m-2">{{item.preco | conversaoPreco}}</p>
+                      <button type="button" class="close mr-3" @click="removerProdutos(index, item.id)">
+                        <span>&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <p class="d-flex justify-content-end align-itens-end font-weight-bold m-3">Total: {{total | conversaoPreco}}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Finalizar Compra</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Lista de Produtos-->
+    <section>
+      <div class="container">
+        <div class="produtos col" v-for="(produto) in produtosList"  data-toggle="modal" data-target="#produtosModal" @click="produtoModal(produto.id)">
+          <div class="row my-lg-5 my-4">
+            <img class="img-fluid col-md-3 col p-0" :src="produto.img" :alt="produto.nome">
+            <div class="col-md-9 col pl-md-5 d-flex flex-column justify-content-center shadow bg-white text-md-left text-center">
+              <h1 class="h1">{{produto.nome}}</h1>
+              <span class="h2 text-secondary">{{produto.preco | conversaoPreco}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Modal do Produto-->
+    <section>
+      <div class="modal fade mt-5" id="produtosModal" tabindex="-1">
+        <div class="produtos-modal modal-dialog modal-xl shadow">
+          <div class="modal-content">
+            <div class="modal-header sticky-top text-truncate bg-white m-0 px-3 py-1 ">
+              <h1 class="h1">{{produto.nome}}</h1>
+              <button class="close" type="button"  data-dismiss="modal">
+                <span class="h1">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <img class="col-lg-4 py-lg-0 py-3" :src="produto.img" :alt="produto.nome">
+                <div class="col-lg-8 d-flex flex-column justify-content-between">
+                  <span class="h2 text-secondary mx-lg-0 mx-auto">{{produto.preco | conversaoPreco}}</span>
+                  <p>{{produto.descricao}}</p>
+                  <div class="mx-lg-0 mx-auto">
+                    <button class="btn btn-dark btn-lg" @click="adicionarProdutos(produto.id)" v-if="produto.estoque > 0">
+                      Adicionar Item
+                    </button>
+                    <button class="btn btn-dark btn-lg" v-else disabled>
+                      Produto Esgotado
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col bg-light m-3">
+                  <h2 class="py-3 text-center">Avaliações</h2>
+                  <div class="card mb-3" v-for="(dados) in produto.avaliacoes">
+                    <div class="card-body shadow">
+                      <p class="mb-1">{{dados.descricao}}</p>
+                      <p class="font-weight-bold mb-0">{{dados.nome}} | {{dados.estrelas}} Estrelas</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Mensagem Informativo de Produtos Adicionados ao Carrinho-->
+    <section class="caixaAlerta fixed-top mt-5" v-show="alerta">
+      <div class="container">
+        <div class="alert alert-dark col-6 text-center mx-auto">
+          <span><b>{{produto.nome}}</b> adicionado ao carrinho.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="/js/bootstrap/jquery-3.3.1.slim.min.js"></script>
+  <script src="/js/bootstrap/popper.min.js"></script>
+  <script src="/js/bootstrap/bootstrap.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>
